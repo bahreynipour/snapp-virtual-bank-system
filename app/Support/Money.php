@@ -72,6 +72,16 @@ final readonly class Money
     }
 
     /**
+     * Make the money negative
+     *
+     * @throws Throwable
+     */
+    public function negative(): Money
+    {
+        return new self( - $this->getAmount());
+    }
+
+    /**
      * Check if this money amount is lower than input amount
      *
      * @throws Throwable
