@@ -18,4 +18,8 @@ Route::prefix('v1')
             ->name('cards.')
             ->group(base_path('routes/v1/cards.php'));
 
+        Route::prefix('reports')
+            ->name('reports.')
+            ->group(base_path('routes/v1/reports.php'));
+
     });
