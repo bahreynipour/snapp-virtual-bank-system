@@ -17,5 +17,9 @@ return [
             'global_pattern' => '00', # optional
             'sender' => '' # optional
         ],
+        'ghasedak' => [
+            'class' => \App\Services\SmsService\Drivers\Ghasedak::class, # required
+            'api_key' => '', # required
+        ],
     ]
 ];
