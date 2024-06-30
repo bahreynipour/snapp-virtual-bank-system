@@ -4,3 +4,4 @@ docker-compose.override.yml
 /.idea
 /.vscode
 /.infrastructure/
+.DS_Store
