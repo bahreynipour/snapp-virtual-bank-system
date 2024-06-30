@@ -1,0 +1,10 @@
+# Ignore anything GIT related
+.git*
+/.infrastructure/
+Dockerfile
+docker-compose*
+docs/
+.gitpod*.infrastructure
+.github
+.gitlab-ci.yml
+.infrastructure
