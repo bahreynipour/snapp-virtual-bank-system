@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Enums\TransactionProcessor;
 use App\Enums\TransactionStatus;
 use App\Enums\TransactionType;
 use App\Models\Card;
@@ -24,10 +23,10 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         $isFailed = fake()->boolean(80);
-        $processor = TransactionProcessor::CARD_TO_CARD->value;
+        $driver = 'card-to-card';
         $amount = fake()->biasedNumberBetween(
-            config("bank.transaction.processor.$processor.min", 10000),
-            config("bank.transaction.processor.$processor.max", 500000000)
+            config("bank.transfer.$driver.min", 10000),
+            config("bank.transfer.$driver.max", 500000000)
         );
 
         return [

@@ -11,7 +11,7 @@ use ReflectionException;
 use ReflectionFunction;
 use ReflectionParameter;
 
-class TransactionLocker
+final class TransactionLocker
 {
     protected Closure $closure;
 
