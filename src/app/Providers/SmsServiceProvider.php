@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\SmsService\Sender;
+use App\Services\SmsService\SmsManager;
 use Illuminate\Support\ServiceProvider;
 
 class SmsServiceProvider extends ServiceProvider
@@ -11,14 +13,15 @@ class SmsServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
-    }
+        $this->app->singleton('sms.sender', fn() => new Sender());
 
-    /**
-     * Bootstrap services.
-     */
-    public function boot(): void
-    {
-        //
+        $this->app->bind('sms.manager', function () {
+
+            $sender = $this->app['sms.sender'];;
+
+            $sender->driver(config('sms.default_driver'));
+
+            return new SmsManager($sender);
+        });
     }
 }
