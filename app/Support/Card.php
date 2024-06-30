@@ -38,8 +38,6 @@ final readonly class Card
                 return $number > 9 ? $number - 9 : $number;
             });
 
-        $t = $prepareForValidation->sum();
-
         throw_if(
             $prepareForValidation->sum() % 10 !== 0,
             InvalidCardNumberException::class
@@ -48,7 +46,7 @@ final readonly class Card
         return $cardNumber;
     }
 
-    public function isValid(string $cardNumber): bool
+    public static function isValid(string $cardNumber): bool
     {
         try {
             self::validate($cardNumber);

@@ -26,9 +26,11 @@ final readonly class Money
      *
      * @throws Throwable
      */
-    public static function forge(string|int|float $amount): Money
+    public static function forge(string|int|float|Money $amount): Money
     {
-        return new self(Str::normalizeNumbers($amount));
+        return $amount instanceof Money
+            ? $amount
+            : new self(Str::normalizeNumbers($amount));
     }
 
     /**
@@ -78,7 +80,21 @@ final readonly class Money
      */
     public function negative(): Money
     {
-        return new self( - $this->getAmount());
+        return $this->isGreaterThan(0)
+            ? new self(-$this->getAmount())
+            : $this;
+    }
+
+    /**
+     * Make the money positive
+     *
+     * @throws Throwable
+     */
+    public function positive(): Money
+    {
+        return $this->isLowerThan(0)
+            ? new self(Str::remove('-', $this->getAmount()))
+            : $this;
     }
 
     /**

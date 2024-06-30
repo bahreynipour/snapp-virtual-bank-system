@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transfers', function (Blueprint $table) {
             $table->id();
-            $table->string('processor')->index();
+            $table->string('driver')->index();
             $table->morphs('from');
             $table->morphs('to');
             $table->json('meta')->nullable();
