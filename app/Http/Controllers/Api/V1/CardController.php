@@ -23,8 +23,9 @@ class CardController extends Controller
             $args['tracking_code'] = $transfer->transaction->uuid;
 
         } catch (Throwable $exception) {
+            return $exception;
             $args['status'] = 'error';
-            $args['code'] = $exception::ERROR_CODE;
+            $args['code'] = $exception::$ErrorCode ?? 'UNKNOWN';
         }
 
         return response()->json($args);

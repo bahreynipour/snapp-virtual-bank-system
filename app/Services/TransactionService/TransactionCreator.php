@@ -4,7 +4,6 @@ namespace App\Services\TransactionService;
 
 use App\Enums\TransactionStatus;
 use App\Enums\TransactionType;
-use App\Exceptions\InsufficientBalanceException;
 use App\Models\Account;
 use App\Models\Transaction;
 use App\Services\LockService\Concerns\Lockable;
@@ -51,6 +50,10 @@ class TransactionCreator implements TransactionCreatorContract
             if ($transaction->isWithdraw()) {
                 $transaction->account->assertHaveBalance($this->transaction->amount);
             }
+
+            $transaction->completed_at = now();
+
+            $transaction->status = TransactionStatus::SUCCESS->value;
 
             $transaction->save();
 

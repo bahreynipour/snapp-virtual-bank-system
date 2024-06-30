@@ -7,7 +7,7 @@ use Exception;
 
 class InsufficientBalanceException extends Exception
 {
-    public const ERROR_CODE = 'INSUFFICIENT_BALANCE';
+    public static string $ErrorCode = 'INSUFFICIENT_BALANCE';
 
     public function __construct(Account $account)
     {
